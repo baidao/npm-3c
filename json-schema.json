@@ -1,0 +1,22 @@
+{
+	"*(interface_name)": {
+			"title": "*(interface_name)",
+			"path": "path",
+			"description": "GET|POST|PUT|DELETE",
+			"params": {
+				"arg": {
+					"type": "string",
+					"required": true,
+					"format": "/.../g",
+					"testInfo": {
+						"": "",
+						"": "",
+						"": ""
+					} //write the test case and the expect result
+				},
+				//...
+			}
+		}
+	,
+		//{...}
+}

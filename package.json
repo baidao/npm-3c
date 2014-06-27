@@ -1,0 +1,26 @@
+{
+  "name": "varify-interfaces",
+  "description": "varify the backend interfaces",
+  "version": "0.0.0",
+  "dependencies": {
+    "supertest": "0.13.0",
+    "underscore": "1.6.0"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha test"
+  },
+  "publishConfig": {
+    "registry": "http://registry.npmjs.org"
+  },
+  "author": "kang.dai <silentmood198909@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^1.18.2",
+    "istanbul": "^0.2.7",
+    "jscs": "^1.4.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:silentmood/varify-interfaces.git"
+  }
+}
