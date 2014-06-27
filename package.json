@@ -1,12 +1,13 @@
 {
   "name": "varify-interfaces",
-  "description": "varify the backend interfaces",
+  "description": "json-schema api-doc mock-server",
   "version": "0.0.0",
   "dependencies": {
     "supertest": "0.13.0",
-    "underscore": "1.6.0",
-    "z-schema": "*",
-    "express": "3.4.0"
+    "handlebars": "1.3.0",
+    "underscore": "1.5.x",
+    "restify": "2.8.1",
+    "z-schema": "*"
   },
   "scripts": {
     "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha test"
@@ -14,7 +15,7 @@
   "publishConfig": {
     "registry": "http://registry.npmjs.org"
   },
-  "author": "kang.dai <silentmood198909@gmail.com>",
+  "author": "baidao",
   "license": "ISC",
   "devDependencies": {
     "mocha": "^1.18.2",
@@ -23,6 +24,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:silentmood/varify-interfaces.git"
+    "url": "git@github.com/baidao/npm-varify-interfaces.git"
   }
 }

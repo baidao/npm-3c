@@ -1,30 +1,37 @@
-express = require "express"
-bodyParser = require "body-parser"
-z = require	"z-schema"
+restify = require 'restify'
+zSchema = require	"z-schema"
+path = require "path"
 
-create = (filePath) ->
-	config = require filePath
-	files = config.files
-	app = new express
-	app.use express.bodyParser()
-	app.use app.router
+create = (config) ->
+	files = config.files or []
+	port = config.port or 4321
+	# 启动restify server
+	server = restify.createServer
+  	name: 'mock server'
+  	version: '0.0.1'
+  server.use restify.acceptParser(server.acceptable)
+	server.use restify.queryParser()
+	server.use restify.bodyParser()
 	files.forEach (file) ->
-		schemas = require "#{__dirname}/../#{file}"
+		filePath = path.resolve process.cwd(), "./schema/#{file}"
+		schemas = require filePath
 		schemas.forEach (schema) ->
-			type = schema.type.toLowerCase()
-			path = schema.path
-			app[type] path, (req, res) ->
+			type = (schema.meta?.method or 'get').toLowerCase()
+			uri = schema.meta?.uri or '/test'
+			server[type] uri, (req, res, next) ->
 				json = req.body
-				json = req.query if type is 'get'
-				z.validate(json, schema.params).then((report) -> 
+				json = req.params if type is 'get' #如果是get请求 使用params
+				#schema验证
+				zSchema.validate(json, schema.params).then((report) ->
+					# 通过验证
 					res.send "ok"
 				).catch((err) ->
+					# 没有通过验证
+					console.error err
 					res.send "nop"
 				)
-	app.listen 1234
+	server.listen port, ->
+		console.info "############# \n #{server.name} listening at #{port} ... \n#############"
 
 module.exports =
 	create: create
-
-if module is require.main
-	app = new express

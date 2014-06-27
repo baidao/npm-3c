@@ -1,6 +1,12 @@
-md = require './lib/markdown'
+markdown = require './lib/markdown'
 server = require './lib/server'
 
-if module is require.main 
-	# md.write '../config.json'
-	server.create '../config.json'
+DEFAULTS =
+  configFile: './schema/config.json'
+
+if module is require.main
+  config = require DEFAULTS.configFile
+  # markdown
+  markdown.create config
+  # mock server
+  server.create config

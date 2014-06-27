@@ -1,0 +1,8 @@
+{
+	"files": [
+		"source1",
+		"source2"
+	],
+  "doc": "doc/api.md",
+  "port": 1234
+}

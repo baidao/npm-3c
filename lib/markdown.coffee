@@ -1,21 +1,32 @@
 fs = require "fs"
 path = require "path"
-_ = require "underscore"
+handlebars = require "handlebars"
+handlebars.registerHelper 'json', (obj) ->
+   JSON.stringify obj, null, '\t'
 
-write = (filePath) ->
-	config = require filePath
-	schemas = config.files
-	outputPath = "#{__dirname}/../docs/api.md"
-	try 
-		fs.unlinkSync outputPath if fs.existsSync outputPath
-	catch e
-		console.log e, 'lol'
-	schemas.forEach (schema) ->
-		schema = require "#{__dirname}/../#{schema}"
-		try 		
-			fs.appendFileSync outputPath, _.template(fs.readFileSync("#{__dirname}/templates/md.tpl").toString())({schema: schema})
-		catch e
-			console.log e, 'lol'
+create = (config) ->
+	# schemas文件
+	files = config.files or []
+	# 文档文件
+	docPath = path.resolve process.cwd(), config.doc or './doc/api.md'
+	# 模板文件
+	tmplPath = path.resolve __dirname, './templates/md.tpl'
+	tmpl = fs.readFileSync tmplPath, "utf-8"
+	try
+		# 清空已有文档
+		fs.unlinkSync docPath if fs.existsSync docPath
+	catch err
+		console.log err
+	files.forEach (file) ->
+		filePath = path.resolve process.cwd(), "./schema/#{file}"
+		schemas = require filePath
+		try
+			# 编译schema 到 md
+			doc = handlebars.compile(tmpl)(schemas: schemas)
+			fs.appendFileSync docPath, doc
+		catch err
+			console.error err
+	console.info "############# \n api markdown generated at #{docPath} ...  \n#############"
 
 module.exports =
-	write: write
+	create: create

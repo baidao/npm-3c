@@ -1,34 +1,29 @@
-<% schema.forEach(function(data) { %>
+{{#each schemas}}
 
-## 接口名 
-<%= data.title %>
+## 接口名
+{{meta.title}}
 
-### 接口描述 
-<%= data.description %>
+### 接口描述
+{{meta.description}}
 
-### 方法 
-<%= data.type %>
+### 方法
+{{meta.method}}
 
 ### 参数
 ```javascript
-<%= JSON.stringify(data.params, null, '\t') %>
+{{{json params}}}
 
 ```
 
-### 返回值 
-#### 成功 
+### 返回值
+#### 成功
 ```javascript
-<%= JSON.stringify(data.success, null, '\t') %>
+{{{json sucess}}}
 
 ```
-#### 失败 
+#### 失败
 ```javascript
-<%= JSON.stringify(data.error, null, '\t') %>
+{{{json error}}}
 
 ```
-
-
-### 其他说明:
-	<%= data.other %>
-
-<% }) %>
+{{/each}}
