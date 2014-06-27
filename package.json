@@ -4,7 +4,9 @@
   "version": "0.0.0",
   "dependencies": {
     "supertest": "0.13.0",
-    "underscore": "1.6.0"
+    "underscore": "1.6.0",
+    "z-schema": "*",
+    "express": "3.4.0"
   },
   "scripts": {
     "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha test"
