@@ -145,7 +145,8 @@ generate.oneOf = (schema) ->
   typeIndex = _.random 0, schema.type.length - 1
   generate {type: schema.type[typeIndex]}
 
-# 暂时不支持allOf oneOf $ref....
+# 只支持简单格式的json schema...
+# 暂时不支持如allOf oneOf $ref....
 module.exports =
   extend: extendFormat
   generate: generate
