@@ -6,7 +6,7 @@ module.exports = [
 			description: 'just for test2' #描述
 			host: 'localhost' #Host
 			uri: '/test2' #path
-			method: 'delete' #方法类型
+			method: 'get' #方法类型
 		params: #请求参数 get query post data...
 			type: 'object'
 			properties:

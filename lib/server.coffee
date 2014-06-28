@@ -9,6 +9,8 @@ create = (config) ->
 	files = config.files or []
 	# 端口
 	port = config.port or 4321
+	# 是否强制认为请求失败
+	forceError = !!config.forceError
 	# 错误码
 	errorCode = config.errorCode or 500
 	# 启动restify server
@@ -26,9 +28,13 @@ create = (config) ->
 			type = 'del' if type is 'delete' #restify del not delete..
 			uri = schema.meta?.uri or '/test'
 			server[type] uri, (req, res, next) ->
-				console.log req.body, req.params, '111111'
 				json = req.body
 				json = req.params if type is 'get' #如果是get请求 使用params
+				# 强制返回请求失败数据
+				if forceError
+					result = generator.generate schema.error or {}
+					result.schema_error = '你丫臭不要脸!居然强行让请求失败!'
+					res.send errorCode, result
 				# schema验证
 				zSchema.validate(json, schema.params).then((report) ->
 					# 通过验证 根据success schema 生成返回数据
