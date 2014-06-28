@@ -23,8 +23,10 @@ create = (config) ->
 		schemas = require filePath
 		schemas.forEach (schema) ->
 			type = (schema.meta?.method or 'get').toLowerCase()
+			type = 'del' if type is 'delete' #restify del not delete..
 			uri = schema.meta?.uri or '/test'
 			server[type] uri, (req, res, next) ->
+				console.log req.body, req.params, '111111'
 				json = req.body
 				json = req.params if type is 'get' #如果是get请求 使用params
 				# schema验证
