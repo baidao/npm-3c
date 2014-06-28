@@ -12,36 +12,29 @@ DEFAULTS =
 
 module.exports =
   exec: (argv) ->
-    cwd = process.cwd()
-    # console.log argv
     # 初始化
     if argv.i or argv.init
-      root = argv.i or argv.init
-      init.init()
+      try
+        init.init()
+      catch err
+        console.error err, 'init failed..'
     # 文档生成
-    else if argv.doc or argv.d
+    else if argv.d or argv.doc
       # markdown doc
-      configPath = path.resolve process.cwd(), DEFAULTS.configFile
-      config = require configPath
-      markdown.create config
+      try
+        configPath = path.resolve process.cwd(), DEFAULTS.configFile
+        config = require configPath
+        markdown.create config
+      catch err
+        console.error err, 'create api doc failed..'
     # mock服务器
-    else if argv.mock or argv.m
-      # extend generator format
-      configPath = path.resolve process.cwd(), DEFAULTS.configFile
-      config = require configPath
-      generator.extend config
-      # mock server
-      server.create config
-
-if module is require.main
-  # init
-  init.init()
-  configPath = path.resolve process.cwd(), DEFAULTS.configFile
-  config = require configPath
-  # markdown
-  markdown.create config
-  # mock server
-  server.create config
-  # extend generator format
-  generator.extend config
-
+    else if argv.m or argv.mock
+      try
+        configPath = path.resolve process.cwd(), DEFAULTS.configFile
+        config = require configPath
+        # extend generator format
+        generator.extend config
+        # mock server
+        server.create config
+      catch err
+        console.error err, 'create mock server failed..'
