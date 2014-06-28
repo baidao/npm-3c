@@ -1,13 +1,16 @@
+# 接口文档
+> 该文档自动生成 请勿手工改动
+
 {{#each schemas}}
 
 ### 接口名
-{{meta.title}}
+> {{meta.title}}
 
 ### 接口描述
-{{meta.description}}
+> {{meta.description}}
 
 ### 方法
-{{meta.method}}
+> {{meta.method}}
 
 ### 参数
 ```javascript
@@ -16,12 +19,14 @@
 ```
 
 ### 返回值
-#### 成功
+> 成功
+
 ```javascript
-{{{json sucess}}}
+{{{json success}}}
 
 ```
-#### 失败
+> 失败
+
 ```javascript
 {{{json error}}}
 

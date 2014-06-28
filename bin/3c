@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+
+var program = require('commander');
+var argv = require('optimist').argv;
+program
+  .version('0.0.1')
+  .usage('[options]')
+  .description('3c - doc mock check')
+  .option('-i, --init', '初始化')
+  .option('-d, --doc', '文档')
+  .option('-m, --mock', 'mock服务器')
+  .parse(process.argv);
+
+require('../index.js').exec(argv);
+

@@ -121,11 +121,12 @@ generate.array = (schema) ->
 
 # type = object
 generate.object = (schema) ->
+  instance = {}
   min = schema.minProperties or 0
   max = schema.maxProperties or defaultMax
   required = schema.required or []
-  remaining = _.keys schema.properties
-  instance = {}
+  properties = schema.properties or {}
+  remaining = _.keys properties
   _.each required, (name) -> instance[name] = generate schema.properties[name]
   remaining = _.difference remaining, required
   amount = _.random(Math.max(min, required.length), max) - required.length

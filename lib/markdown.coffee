@@ -12,7 +12,7 @@ create = (config) ->
 	# 文档文件
 	docPath = path.resolve process.cwd(), config.doc or './doc/api.md'
 	# 模板文件
-	tmplPath = path.resolve __dirname, './templates/md.tpl'
+	tmplPath = path.resolve __dirname, './templates/api.tpl'
 	tmpl = fs.readFileSync tmplPath, 'utf-8'
 	try
 		# 清空已有文档

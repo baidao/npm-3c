@@ -2,8 +2,8 @@
 
 path = require 'path'
 restify = require 'restify'
-zSchema = require	'z-schema'
 generator = require './generator'
+validate = require('json-schema').validate
 
 create = (config) ->
 	files = config.files or []
@@ -20,6 +20,8 @@ create = (config) ->
   server.use restify.acceptParser server.acceptable
 	server.use restify.queryParser()
 	server.use restify.bodyParser()
+	server.use restify.jsonp()
+	server.use restify.gzipResponse()
 	files.forEach (file) ->
 		filePath = path.resolve process.cwd(), "./schema/#{file}"
 		schemas = require filePath
@@ -32,21 +34,18 @@ create = (config) ->
 				json = req.params if type is 'get' #如果是get请求 使用params
 				# 强制返回请求失败数据
 				if forceError
-					result = generator.generate schema.error or {}
-					result.schema_error = '你丫臭不要脸!居然强行让请求失败!'
-					res.send errorCode, result
+					res.send errorCode, generator.generate schema.error or {}
+					next()
 				# schema验证
-				zSchema.validate(json, schema.params).then((report) ->
-					# 通过验证 根据success schema 生成返回数据
-					result = generator.generate schema.success or {}
-					res.send 200, result
-				).catch (err) ->
-					# 没有通过验证 根据error schema 生成返回数据
-					result = generator.generate schema.error or {}
-					# 添加验证失败的原因 方便查看
-					result.schema_error = err.errors
-					# console.error err
-					res.send errorCode, result
+				validation = validate json, validate
+				if validation.valid is true # 通过验证 根据success schema 生成返回数据
+					success = generator.generate schema.success or {}
+					res.send 200, success
+					next()
+				else # 没有通过验证 根据error schema 生成返回数据 添加验证失败的原因 方便查看
+					error = _.extend generator.generate schema.error or {}, validation: validation
+					res.send errorCode, error
+					next()
 
 	server.listen port, ->
 		console.info "############# \n #{server.name} listening at #{port} ... \n#############"

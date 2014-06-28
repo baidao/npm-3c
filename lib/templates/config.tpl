@@ -1,5 +1,5 @@
 {
-	"files": ["demo"],
+  "files": ["demo"],
   "format": "format/format",
   "doc": "doc/api.md",
   "port": 1234,
