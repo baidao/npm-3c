@@ -7,7 +7,7 @@ randexp = RandExp.randexp
 
 # 扩展字符集
 RandExp::anyRandChar = ->
-  characters = '昨天在电影频道为年轻导演们举办的中国电影新力量活动上谈了一些感受其实后会无期还没公映尚不能称是导演也没资格对所谓年轻人说啥都是说给自己的除了最后一句abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+  characters = '昨天在电影频道为年轻导演们举办的中国电影新力量活动上谈了一些感受其实后会无期还没公映尚不能称是导演也没资格对所谓年轻人说啥都是说给自己的除了最后一句'
   characters[_.random characters.length - 1]
 
 # 默认最大值
@@ -20,9 +20,9 @@ defaultFormat =
   'timestamp': ->
     val: _.random 1400000000000, 1800000000000
   'email':
-    pattern: /\w+@example\.com/
+    pattern: /\w{3,6}\.example\.com\/\w{3,6}/
   'uri':
-    pattern: /\w+\.example\.com\/\w+/
+    pattern: /\http:\/\/\w{3,6}\.example\.com\/\w{3,6}/
   'mobile':
     pattern: /^18\d{5,9}/
 
