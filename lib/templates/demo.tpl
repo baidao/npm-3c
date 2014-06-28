@@ -75,7 +75,7 @@ module.exports = [
         }
       }
     },
-    error: {
+    error: { //请求失败
       type: 'object',
       properties: {
         code: {

@@ -5,16 +5,15 @@
   "author": {
     "name": "baidao"
   },
+  "keywords": [
+    "json schema",
+    "api doc",
+    "mock server"
+    "check"
+  ],
   "repository": {
     "type": "git",
     "url": "git@github.com/baidao/npm-varify-interfaces.git"
-  },
-  "main": "./3c",
-  "bin": {
-    "3c": "./bin/3c"
-  },
-  "scripts": {
-    "test": "node test/index.js"
   },
   "licenses": [
     {
@@ -22,11 +21,9 @@
       "url": "http://www.opensource.org/licenses/MIT"
     }
   ],
-  "keywords": [
-    "if",
-    "ift",
-    "interface"
-  ],
+  "scripts": {
+    "test": "node test/index.js"
+  },
   "main": "./index",
   "bin": {
     "3c": "./bin/3c"
@@ -34,7 +31,6 @@
   "dependencies": {
     "optimist": "0.6.x",
     "commander": "1.3.x",
-    "supertest": "0.13.0",
     "handlebars": "1.3.0",
     "underscore": "1.5.x",
     "randexp": "0.3.3",
