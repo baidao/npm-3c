@@ -1,15 +1,21 @@
+'use strict'
+
+path = require 'path'
 restify = require 'restify'
-zSchema = require	"z-schema"
-path = require "path"
+zSchema = require	'z-schema'
+generator = require './generator'
 
 create = (config) ->
 	files = config.files or []
+	# 端口
 	port = config.port or 4321
+	# 错误码
+	errorCode = config.errorCode or 500
 	# 启动restify server
 	server = restify.createServer
   	name: 'mock server'
   	version: '0.0.1'
-  server.use restify.acceptParser(server.acceptable)
+  server.use restify.acceptParser server.acceptable
 	server.use restify.queryParser()
 	server.use restify.bodyParser()
 	files.forEach (file) ->
@@ -21,15 +27,19 @@ create = (config) ->
 			server[type] uri, (req, res, next) ->
 				json = req.body
 				json = req.params if type is 'get' #如果是get请求 使用params
-				#schema验证
+				# schema验证
 				zSchema.validate(json, schema.params).then((report) ->
-					# 通过验证
-					res.send "ok"
-				).catch((err) ->
-					# 没有通过验证
-					console.error err
-					res.send "nop"
-				)
+					# 通过验证 根据success schema 生成返回数据
+					result = generator.generate schema.success or {}
+					res.send 200, result
+				).catch (err) ->
+					# 没有通过验证 根据error schema 生成返回数据
+					result = generator.generate schema.error or {}
+					# 添加验证失败的原因 方便查看
+					result.schema_error = err.errors
+					# console.error err
+					res.send errorCode, result
+
 	server.listen port, ->
 		console.info "############# \n #{server.name} listening at #{port} ... \n#############"
 

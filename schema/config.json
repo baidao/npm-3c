@@ -1,8 +1,7 @@
 {
-	"files": [
-		"source1",
-		"source2"
-	],
+	"files": ["demo"],
+  "format": "format/format",
   "doc": "doc/api.md",
-  "port": 1234
+  "port": 1234,
+  "errorCode": 500
 }

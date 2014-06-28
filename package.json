@@ -1,11 +1,12 @@
 {
   "name": "varify-interfaces",
   "description": "json-schema api-doc mock-server",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "dependencies": {
     "supertest": "0.13.0",
     "handlebars": "1.3.0",
     "underscore": "1.5.x",
+    "randexp": "0.3.3",
     "restify": "2.8.1",
     "z-schema": "*"
   },
