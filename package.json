@@ -26,7 +26,7 @@
   },
   "main": "./index",
   "bin": {
-    "3c": "./bin/index"
+    "3c": "./bin/3c"
   },
   "dependencies": {
     "optimist": "0.6.x",
