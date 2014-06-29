@@ -1,7 +1,7 @@
 ## 简介
-* 基于json-s**"c"**hema
-* 生成文档do**"c"**
-* 生成mo**"c"**k server
+* 基于json-s **"c"** hema
+* 生成文档do **"c"**
+* 生成mo **"c"** k server
 
 ## 安装
 
