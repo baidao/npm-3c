@@ -1,12 +1,12 @@
 ## 简介
-* 基于json-schema
-* 生成文档
-* 生成mock server
+* 基于json-s**"c"**hema
+* 生成文档do**"c"**
+* 生成mo**"c"**k server
 
 ## 安装
 
 ```
-npm install varify-interfaces --save
+npm install 3c --save
 ```
 
 ## 使用原则

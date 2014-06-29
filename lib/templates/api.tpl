@@ -9,6 +9,9 @@
 ### 接口描述
 > {{meta.description}}
 
+### 接口URI
+> {{meta.uri}}
+
 ### 方法
 > {{meta.method}}
 
