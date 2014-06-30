@@ -39,55 +39,10 @@
 ```
 - demo.js: schema栗子
 
-    简单的schema可以搞定 暂时不支持比较碉堡的 oneOf allOf $ref..等等
+    - 简单的schema可以搞定
+    - 暂时不支持比较碉堡的 oneOf allOf $ref..等等
+    - 可以设置默认值 default
 
-    自带一些特殊的format 方便生成测试数据
-
-
-```
-    timestamp: { //自带的匹配 timestamp
-        type: 'string',
-        format: 'timestamp'
-    },
-    aaa: { //自定义的特殊匹配
-        type: 'string',
-        format: 'aaaaaaa'
-    }
-```
-
-```
-'datetime':
-    val: new Date _.random(1400000000000, 1800000000000)
-  'timestamp': ->
-    val: _.random 1400000000000, 1800000000000
-  'email':
-    pattern: /\w{3,6}\.example\.com\/\w{3,6}/
-  'uri':
-    pattern: /\http:\/\/\w{3,6}\.example\.com\/\w{3,6}/
-  'mobile':
-    pattern: /^18\d{5,9}/
-```
-
-也可以自行 在format.js 添加
-
-#### format: 存放特殊的匹配规则
-
-对pattern匹配的一个补充
-
-用来生成Mock数据
-
-- format.js
-
-```
-module.exports = {
-    woshinibaba: {
-        val: 'woshinibaba' //直接采用 数据
-    },
-    aaaaaaa: {
-        pattern: "[a-c]" //按照pattern 生成数据
-    }
-};
-```
 
 ### 生成文档
 > 3c -d 或者 3c --doc

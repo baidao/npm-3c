@@ -13,35 +13,6 @@ RandExp::anyRandChar = ->
 # 默认最大值
 defaultMax = 20
 
-# 默认匹配格式
-defaultFormat =
-  'datetime':
-    val: new Date _.random(1400000000000, 1800000000000)
-  'timestamp': ->
-    val: _.random 1400000000000, 1800000000000
-  'email':
-    pattern: /\w{3,6}\.example\.com\/\w{3,6}/
-  'uri':
-    pattern: /\http:\/\/\w{3,6}\.example\.com\/\w{3,6}/
-  'mobile':
-    pattern: /^18\d{5,9}/
-
-extendFormat = (config) ->
-  try
-    extension = require path.resolve process.cwd(), config.format
-    defaultFormat = _.extend defaultFormat, extension
-  catch err
-    console.error err, 'extend format...'
-
-genFormat = (key) ->
-  format = defaultFormat[key]
-  if format
-    return format.val if format.val
-    return randexp format.pattern if format.pattern
-    return randexp /.*/
-  else
-    return randexp /.*/
-
 # 生成
 generate = (schema) ->
   return schema unless _.isObject schema
@@ -86,8 +57,8 @@ generate.number = generate.integer = (schema) ->
 generate.string = (schema) ->
   min = Math.max 1, schema.minLength or 0
   max = schema.maxLength or defaultMax
+  return schema.default if schema.default #默认值
   return randexp(schema.pattern) if schema.pattern #正则
-  return genFormat(schema.format) if schema.format #特殊格式化
   randexp ".{#{min},#{max}}"
 
 # type = array
@@ -148,5 +119,4 @@ generate.oneOf = (schema) ->
 # 只支持简单格式的json schema...
 # 暂时不支持如allOf oneOf $ref....
 module.exports =
-  extend: extendFormat
   generate: generate

@@ -1,4 +1,11 @@
 "use strict"
+
+###
+  email: /\w{3,6}\.example\.com\/\w{3,6}/
+  uri: /\http:\/\/\w{3,6}\.example\.com\/\w{3,6}/
+  mobile: /^18\d{5,9}/
+###
+
 module.exports = [
   meta:
     title: "test2" #接口名称

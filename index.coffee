@@ -4,7 +4,6 @@ path = require 'path'
 init = require './lib/init'
 markdown = require './lib/markdown'
 server = require './lib/server'
-generator = require './lib/generator'
 
 # 默认配置
 DEFAULTS =
@@ -18,23 +17,21 @@ module.exports =
         init.init()
       catch err
         console.error err, 'init failed..'
+
     # 文档生成
     else if argv.d or argv.doc
-      # markdown doc
       try
         configPath = path.resolve process.cwd(), DEFAULTS.configFile
         config = require configPath
         markdown.create config
       catch err
         console.error err, 'create api doc failed..'
+
     # mock服务器
     else if argv.m or argv.mock
       try
         configPath = path.resolve process.cwd(), DEFAULTS.configFile
         config = require configPath
-        # extend generator format
-        generator.extend config
-        # mock server
         server.create config
       catch err
         console.error err, 'create mock server failed..'
