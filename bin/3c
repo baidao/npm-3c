@@ -1,7 +1,7 @@
-#!/usr/bin/env node
+#!/usr/bin/env coffee
 
-var program = require('commander');
-var argv = require('optimist').argv;
+program = require 'commander'
+argv = require('optimist').argv
 program
   .version('0.0.1')
   .usage('[options]')
@@ -9,7 +9,7 @@ program
   .option('-i, --init', '初始化')
   .option('-d, --doc', '文档')
   .option('-m, --mock', 'mock服务器')
-  .parse(process.argv);
+  .parse(process.argv)
 
-require('../index').exec(argv);
+require('../index').exec(argv)
 
