@@ -1,7 +1,7 @@
 {
   "name": "3c",
   "description": "json-schema api-doc mock-server",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "author": {
     "name": "baidao"
   },

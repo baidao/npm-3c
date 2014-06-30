@@ -9,8 +9,8 @@ init = ->
   docDirPath = path.resolve root, 'doc'
   formatDirPath = path.resolve root, 'format'
   configPath = path.resolve schemaDirPath, 'config.json'
-  schemaDemoPath = path.resolve schemaDirPath, 'demo.js'
-  formatDemoPath = path.resolve formatDirPath, 'format.js'
+  schemaDemoPath = path.resolve schemaDirPath, 'demo.coffee'
+  formatDemoPath = path.resolve formatDirPath, 'format.coffee'
 
   !fs.existsSync(schemaDirPath) and fs.mkdirSync(schemaDirPath)
   !fs.existsSync(docDirPath) and fs.mkdirSync(docDirPath)

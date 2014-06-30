@@ -3,7 +3,7 @@
 program = require 'commander'
 argv = require('optimist').argv
 program
-  .version('0.0.3')
+  .version('0.1.0')
   .usage('[options]')
   .description('3c - doc mock check')
   .option('-i, --init', '初始化')
