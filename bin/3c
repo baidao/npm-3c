@@ -11,5 +11,5 @@ program
   .option('-m, --mock', 'mock服务器')
   .parse(process.argv);
 
-require('../index.js').exec(argv);
+require('../index').exec(argv);
 

@@ -29,6 +29,7 @@
     "3c": "./bin/3c"
   },
   "dependencies": {
+    "coffee-script": "1.7.*",
     "optimist": "0.6.x",
     "commander": "1.3.x",
     "handlebars": "1.3.0",
