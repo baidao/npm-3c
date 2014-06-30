@@ -16,6 +16,7 @@ defaultMax = 20
 # 生成
 generate = (schema) ->
   return schema unless _.isObject schema
+  return schema.default if schema.default #默认值
   return generate.enum schema if schema.enum #枚举
   switch schema.type
     when 'string', 'number', 'integer', 'boolean', 'array', 'object', 'null'
@@ -57,7 +58,6 @@ generate.number = generate.integer = (schema) ->
 generate.string = (schema) ->
   min = Math.max 1, schema.minLength or 0
   max = schema.maxLength or defaultMax
-  return schema.default if schema.default #默认值
   return randexp(schema.pattern) if schema.pattern #正则
   randexp ".{#{min},#{max}}"
 

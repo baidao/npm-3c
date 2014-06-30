@@ -2,8 +2,8 @@
 
 path = require 'path'
 init = require './lib/init'
+markdown = require './lib/markdown'
 mock = require './lib/mock'
-server = require './lib/server'
 check = require './lib/check'
 
 # 默认配置

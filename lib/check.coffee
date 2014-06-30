@@ -7,12 +7,12 @@ restify = require 'restify'
 create = (config) ->
   files = config.files or []
   checkDirPath = path.resolve __dirname, './templates/check.tpl'
-  html = fs.readFileSync checkDirPath, 'utf-8'
   port = 4321
   server = restify.createServer
     name: 'check server'
     version: '0.0.1'
   server.get '/', (req, res, next) ->
+    html = fs.readFileSync checkDirPath, 'utf-8'
     res.write html
     res.end()
     next()
@@ -24,5 +24,6 @@ create = (config) ->
     res.send result
   server.listen port, ->
     console.info "############# \n check server #{server.name} listening at #{port} ... \n#############"
+
 module.exports =
   create: create
