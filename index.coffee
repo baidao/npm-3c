@@ -2,8 +2,9 @@
 
 path = require 'path'
 init = require './lib/init'
-markdown = require './lib/markdown'
+mock = require './lib/mock'
 server = require './lib/server'
+check = require './lib/check'
 
 # 默认配置
 DEFAULTS =
@@ -32,6 +33,11 @@ module.exports =
       try
         configPath = path.resolve process.cwd(), DEFAULTS.configFile
         config = require configPath
-        server.create config
+        mock.create config
       catch err
         console.error err, 'create mock server failed..'
+
+if require.main is module
+  configPath = path.resolve process.cwd(), DEFAULTS.configFile
+  config = require configPath
+  check.create config

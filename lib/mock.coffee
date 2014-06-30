@@ -51,7 +51,7 @@ create = (config) ->
 		    		next()
 
 	server.listen port, ->
-		console.info "############# \n #{server.name} listening at #{port} ... \n#############"
+		console.info "############# \n mock server #{server.name} listening at #{port} ... \n#############"
 
 module.exports =
 	create: create
