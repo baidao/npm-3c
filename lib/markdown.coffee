@@ -4,7 +4,9 @@ fs = require 'fs'
 path = require 'path'
 handlebars = require 'handlebars'
 handlebars.registerHelper 'json', (obj) ->
-   JSON.stringify obj, null, '\t'
+  JSON.stringify obj, (key, value) ->
+  	if value.constructor is RegExp then return value.toString() else value
+	 , '\t'
 
 create = (config) ->
 	# schemas文件
