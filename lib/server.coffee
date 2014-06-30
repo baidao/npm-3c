@@ -4,7 +4,8 @@ _ = require 'underscore'
 path = require 'path'
 restify = require 'restify'
 generator = require './generator'
-zSchema = require 'z-schema'
+JaySchema = require 'jayschema'
+jaySchema = new JaySchema
 
 create = (config) ->
 	files = config.files or []
@@ -39,18 +40,15 @@ create = (config) ->
 					res.send errorCode, generator.generate schema.error
 					next()
 				# schema验证
-				zSchema
-					.validate(json, schema.params)
-			    .then((report) ->
-			    	success = generator.generate schema.success
-			    	res.send 200, success
-			    	next()
-			    )
-			    .catch((err) ->
-			    	error = _.extend generator.generate(schema.error), validate_error: err
-			    	res.send errorCode, error
-			    	next()
-			    )
+				jaySchema.validate json, schema.params, (errs) ->
+					unless errs
+		    		success = generator.generate schema.success
+		    		res.send 200, success
+		    		next()
+		    	else
+		    		error = _.extend generator.generate(schema.error), validate_errors: errs
+		    		res.send errorCode, error
+		    		next()
 
 	server.listen port, ->
 		console.info "############# \n #{server.name} listening at #{port} ... \n#############"

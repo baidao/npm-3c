@@ -1,7 +1,7 @@
 {
   "name": "3c",
   "description": "json-schema api-doc mock-server",
-  "version": "0.1.0",
+  "version": "0.1.0-beta",
   "author": {
     "name": "baidao"
   },
@@ -36,7 +36,7 @@
     "underscore": "1.5.x",
     "randexp": "0.3.3",
     "restify": "2.8.1",
-    "z-schema": "*"
+    "jayschema": "0.2.7"
   },
   "engines": {
     "node": ">= 0.10.0"
