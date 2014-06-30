@@ -6,7 +6,7 @@
 ## 安装
 
 ```
-npm install 3c --save
+(sudo) npm install 3c -g
 ```
 
 ## 使用原则
