@@ -1,4 +1,4 @@
-"use strict"
+'use strict'
 
 ###
   email: /\w{3,6}\.example\.com\/\w{3,6}/
@@ -8,90 +8,53 @@
 
 module.exports = [
   meta:
-    title: "test2" #接口名称
-    description: "just for test2" #接口描述
-    host: "localhost"
-    uri: "/test2"
-    method: "get"
+    title: 'test' #接口名称
+    description: 'just for test' #接口描述
+    host: 'localhost'
+    uri: '/test'
+    method: 'get'
 
   params: #请求参数
-    type: "object"
+    type: 'object'
     properties:
       token:
-        type: "string"
+        type: 'string'
 
-    required: ["token"]
+    required: ['token']
 
   success: #请求成功
-    type: "object"
-    required: ["array"]
+    type: 'object'
+    required: ['array']
     properties:
       array:
-        type: "array"
+        type: 'array'
         minItems: 8
         maxItems: 10
         items:
-          type: "object"
+          type: 'object'
           required: [
-            "id"
-            "aaa"
-            "bbb"
-            "name"
-            "email"
-            "timestamp"
-            "datetime"
-            "uri"
-            "mobile"
+            'id'
+            'name'
           ]
           properties:
             id:
-              type: "integer"
-              description: "id"
-
+              type: 'integer'
+              description: 'id'
             any:
-              type: "any"
-
+              type: 'any'
             name:
-              type: "string"
-              description: "姓名"
-
-            email: #自带的匹配
-              type: "string"
-              format: "email"
-              description: "邮箱"
-
-            uri: #自带的匹配 uri
-              type: "string"
-              format: "uri"
-
-            timestamp: #自带的匹配 timestamp
-              type: "string"
-              format: "timestamp"
-
-            datetime: #自带的匹配 datetime
-              type: "string"
-              format: "datetime"
-
-            mobile: #自带的匹配 mobile
-              type: "string"
-              format: "mobile"
-
-            aaa: #自定义的特殊匹配
-              type: "string"
-              format: "aaaaaaa"
-
-            bbb: #自定义的特殊匹配
-              type: "string"
-              format: "woshinibaba"
+              type: 'string'
+              description: '姓名'
+              default: 'hello world'
 
   error: #请求失败
-    type: "object"
+    type: 'object'
     properties:
       code:
-        type: "integer"
+        type: 'integer'
 
       msg:
-        type: "string"
+        type: 'string'
 
-    required: ["code"]
+    required: ['code']
 ]
