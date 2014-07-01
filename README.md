@@ -103,7 +103,7 @@ module.exports = [
 
 mock server 默认1234端口
 
-## 数据校验
+### 数据校验
 
 > 3c -c 或者 3c --check
 
