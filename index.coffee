@@ -37,6 +37,15 @@ module.exports =
       catch err
         console.error err, 'create mock server failed..'
 
+    # check服务器
+    else if argv.c or argv.check
+      try
+        configPath = path.resolve process.cwd(), DEFAULTS.configFile
+        config = require configPath
+        check.create config
+      catch err
+        console.error err, 'check server failed..'
+
 if require.main is module
   console.log 'hello'
   # configPath = path.resolve process.cwd(), DEFAULTS.configFile
