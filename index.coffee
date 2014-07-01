@@ -38,6 +38,7 @@ module.exports =
         console.error err, 'create mock server failed..'
 
 if require.main is module
-  configPath = path.resolve process.cwd(), DEFAULTS.configFile
-  config = require configPath
-  check.create config
+  console.log 'hello'
+  # configPath = path.resolve process.cwd(), DEFAULTS.configFile
+  # config = require configPath
+  # check.create config

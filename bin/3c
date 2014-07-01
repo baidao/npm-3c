@@ -9,6 +9,7 @@ program
   .option('-i, --init', '初始化')
   .option('-d, --doc', '文档')
   .option('-m, --mock', 'mock服务器')
+  .option('-c, --check', '服务器数据监测')
   .parse(process.argv)
 
 require('../index').exec(argv)

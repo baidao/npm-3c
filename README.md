@@ -1,7 +1,7 @@
 ## 简介
-* 基于json-s **"c"** hema
 * 生成文档do **"c"**
 * 生成mo **"c"** k server
+* 校验服务器返回数据**"c"** heck
 
 ## 安装
 
@@ -43,6 +43,54 @@
     - 暂时不支持比较碉堡的 oneOf allOf $ref..等等
     - 可以设置默认值 default
 
+```
+module.exports = [
+  meta: #接口相关基本藐视
+    title: 'test' #接口名称
+    description: 'just for test' #接口描述
+    host: 'http://localhost:1234'
+    uri: '/test'
+    method: 'get'
+
+  params: #请求参数
+    type: 'object'
+    properties:
+      token:
+        type: 'string'
+    required: ['token']
+
+  success: #请求成功
+    type: 'object'
+    required: ['array']
+    properties:
+      array:
+        type: 'array'
+        minItems: 8
+        maxItems: 10
+        items:
+          type: 'object'
+          required: ['id','name']
+          properties:
+            id:
+              type: 'integer'
+              description: 'id'
+            name:
+              type: 'string'
+              description: '姓名'
+              default: 'hello world'
+
+  error: #请求失败
+    type: 'object'
+    properties:
+      code:
+        type: 'integer'
+    msg:
+        type: 'string'
+    required: ['code']
+]
+
+```
+
 
 ### 生成文档
 > 3c -d 或者 3c --doc
@@ -53,11 +101,15 @@
 
 > 3c -m 或者 3c --mock
 
-## Todos
+mock server 默认1234端口
+
+## 数据校验
 
 > 3c -c 或者 3c --check
 
-对服务器返回数据的校验...
+check server 默认4321端口
+浏览器打开 http://localhost:4321
+进行校验
 
 
 ## Hava fun!

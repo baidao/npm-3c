@@ -1,11 +1,5 @@
 'use strict'
 
-###
-  email: /\w{3,6}\.example\.com\/\w{3,6}/
-  uri: /\http:\/\/\w{3,6}\.example\.com\/\w{3,6}/
-  mobile: /^18\d{5,9}/
-###
-
 module.exports = [
   meta:
     title: 'test' #接口名称
@@ -19,7 +13,6 @@ module.exports = [
     properties:
       token:
         type: 'string'
-
     required: ['token']
 
   success: #请求成功
@@ -32,16 +25,11 @@ module.exports = [
         maxItems: 10
         items:
           type: 'object'
-          required: [
-            'id'
-            'name'
-          ]
+          required: ['id', 'name']
           properties:
             id:
               type: 'integer'
               description: 'id'
-            any:
-              type: 'any'
             name:
               type: 'string'
               description: '姓名'
@@ -52,9 +40,7 @@ module.exports = [
     properties:
       code:
         type: 'integer'
-
       msg:
         type: 'string'
-
     required: ['code']
 ]

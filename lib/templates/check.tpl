@@ -12,7 +12,7 @@
           <input class="form-control input-lg" type="text" placeholder="uri" ng-model="model.uri">
         </div>
         <div class="form-group" ng-repeat="(key, val) in model.params">
-          <input class="form-control input-lg" type="text" placeholder="{{key}}" ng-model="model.params[key]">
+          <input class="form-control input-lg" type="text" placeholder="{{key+val.description}}" ng-model="model.params[key]">
         </div>
         <div class="form-group">
           <button type="button" class="btn btn-danger btn-lg btn-block" ng-click="sendRequest()">
@@ -45,6 +45,7 @@
     $scope.model = {}
     $scope.initForm = function(schema) {
       $scope.successSchema = schema.success;
+      console.log(schema.success);
       $scope.errorSchema = schema.error;
       $scope.model.uri = schema.meta.host + schema.meta.uri;
       $scope.model.method = schema.meta.method;
