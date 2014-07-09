@@ -6,7 +6,7 @@ handlebars = require 'handlebars'
 handlebars.registerHelper 'json', (obj) ->
   JSON.stringify obj, (key, value) ->
   	if value.constructor is RegExp then return value.toString() else value
-	 , '\t'
+	, '\t'
 
 create = (config) ->
 	# schemas文件
