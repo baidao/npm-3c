@@ -37,7 +37,7 @@
     "errorCode": 500 //mock server请求失败时的http code
 }
 ```
-- demo.js: schema栗子
+- demo.js: schema例子
 
     - 简单的schema可以搞定
     - 暂时不支持比较碉堡的 oneOf allOf $ref..等等
